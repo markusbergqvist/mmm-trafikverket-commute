@@ -1,18 +1,17 @@
 td {
-	text-align: left;
+	/* text-align: left; */
 	padding-left: 4px;
 	padding-right: 4px;
 }
 .scheduleTime, .message, .acctualTime {
-	text-align: center;
-	font-size: var(--font-size-medium);
+	/* text-align: center; */
+	font-size: var(--font-size-small);
 }
 .title {
 	/*font-weight: bold;*/
-	font-size: x-large;
+	font-size: var(--font-size-medium);
 }
 .pre_station td {
-	/* font-size: small; */
 	font-size: var(--font-size-xsmall);
 }
 .update_timer {
@@ -24,12 +23,10 @@ td {
 .deviation td {
 	padding: 0px;
 	padding-left: 15px;
-	/* font-size: small; */
 }
 .otherInformation td{
 	padding: 0px;
 	padding-left: 15px;
-	/* font-size: small; */
 }
 .highlight {
 	font-weight: bold;
