@@ -278,6 +278,7 @@ module.exports = NodeHelper.create({
     },
     
     openStreams: async function () {
+        this.close_streams();
         this.sendSocketNotification('CLEAR_TABLE', undefined);
         this.current_train = undefined;
         this.current_departures = [];
@@ -287,14 +288,14 @@ module.exports = NodeHelper.create({
         this.update_departures({data: JSON.stringify(jsonData)});
         this.dep_es = new EventSource(jsonData.RESPONSE.RESULT[0].INFO.SSEURL);
         this.dep_es.onmessage = (res) => {this.update_departures(res);};
-        this.dep_es.onopen = (e) => {console.log("Commute dep connection open");};
+        this.dep_es.onopen = (e) => {console.log("Commute dep connection open "+this.current_train.AdvertisedTrainIdent);};
         if (this.config.pre_stations > 0) {
             const response2 = await this.get_pre_stations_stream(this.current_train.AdvertisedTrainIdent, this.current_train.AdvertisedTimeAtLocation);
             const jsonData2 = await response2.json();
             this.update_pre_stations({data: JSON.stringify(jsonData2)});
             this.pre_es = new EventSource(jsonData2.RESPONSE.RESULT[0].INFO.SSEURL);
             this.pre_es.onmessage = (res) => {this.update_pre_stations(res);};
-            this.pre_es.onopen = (e) => {console.log("Commute pre connection open");};
+            this.pre_es.onopen = (e) => {console.log("Commute pre connection open "+this.current_train.AdvertisedTrainIdent);};
         }
     },
     
@@ -303,7 +304,7 @@ module.exports = NodeHelper.create({
         if (this.pre_es) this.pre_es.close();
         this.dep_es = undefined;
         this.pre_es = undefined;
-        console.log("Commute connections closed");
+        if (this.current_train != undefined) console.log("Commute connections closed "+this.current_train.AdvertisedTrainIdent);
     },
     
     start: function () { },
