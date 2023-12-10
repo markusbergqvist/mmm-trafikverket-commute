@@ -5,7 +5,7 @@ Module.register("mmm-trafikverket-commute", {
     defaults: {
         api_key: "YOUR_API_KEY", //obtain from https://api.trafikinfo.trafikverket.se/Account/Register
         station_from: "Stockholm C", //your home station. See 'station_id_cache.json' for valid names
-        station_to: "Göteborg", //your destination station. Use a nearby station if you dont get any results
+        station_to: "Göteborg C", //your destination station. Use a nearby station if you dont get any results
         departures: 8, //number of departures from your home station to show
         pre_stations: 2, //number of stations before your home station to show
         show_track: true, //show track numbers
