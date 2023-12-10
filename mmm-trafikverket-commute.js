@@ -69,8 +69,6 @@ Module.register("mmm-trafikverket-commute", {
     
     updateDepartures: function (departures) {
         this.last_update_time = moment();
-        //console.log("Commute departures update "+this.last_update_time.format("HH:mm:ss"));
-        //console.log(departures);
         
         //keep current train info updated
         if (this.current_train == undefined || this.current_train.AdvertisedTrainIdent == departures[0].AdvertisedTrainIdent)
@@ -89,8 +87,6 @@ Module.register("mmm-trafikverket-commute", {
     
     updatePreStations: function (pre_stations) {
         this.last_update_time = moment();
-        //console.log("Commute pre stations update "+this.last_update_time.format("HH:mm:ss"));
-        //console.log(pre_stations);
         
         pre_stations.forEach(dep => {
             this.update_announcement_row(dep, true);
@@ -138,7 +134,6 @@ Module.register("mmm-trafikverket-commute", {
         if (Object.hasOwn(elm, "ArrivedTimeAtLocationWithSeconds")) time = moment(elm.ArrivedTimeAtLocationWithSeconds).format("HH:mm:ss");
         if (Object.hasOwn(elm, "TimeAtLocationWithSeconds")) time = moment(elm.TimeAtLocationWithSeconds).format("HH:mm:ss");
 
-        //rows[0].json = JSON.stringify(elm);
         rows[0].children[0].innerHTML = is_pre_station ? elm.AdvertisedLocationName : elm.AdvertisedTrainIdent;
         rows[0].children[1].innerHTML = moment(elm.AdvertisedTimeAtLocation).format("HH:mm");
         if (message != rows[0].children[2].innerHTML) this.highlight(rows[0].children[2]);
@@ -229,7 +224,6 @@ Module.register("mmm-trafikverket-commute", {
             elm.ticks--;
         });
         while (this._highlights.length > 0 && this._highlights[0].ticks < 1) {
-            //this._highlights[0].element.classList.remove("bright");
             this._highlights.shift();
         }
     },
