@@ -5,6 +5,9 @@ Magic Mirror module for showing swedish long distance train information.
 This module can be configured to show all announcments for trains running between two stations. This is useful if you commute. It can also be configured to show announcments for a number of stations ahead of your home station, that way you can confirm that your indended train is on schedule and in case of delays you can leave home later and avoid waiting at the train station.
 Required API key can be obtained for free here https://api.trafikinfo.trafikverket.se/Account/Register
 
+![trafikverket_screenshot](https://github.com/markusbergqvist/mmm-trafikverket-commute/assets/849217/e4cf7787-391e-4cfd-bd87-906fdf2cfcce)
+
+
 Config:
 - api_key: "YOUR_API_KEY", //obtain from https://api.trafikinfo.trafikverket.se/Account/Register
 - station_from: "Stockholm C", //your home station. See 'station_id_cache.json' for valid names
