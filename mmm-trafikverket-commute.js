@@ -39,11 +39,6 @@ Module.register("mmm-trafikverket-commute", {
     getDom: function () {
         if (this._main_node == undefined) {
             this._main_node = document.createElement("div");
-            const clock = document.createElement("div");
-            clock.id = "clock";
-            clock.className = "update_timer";
-            clock.inneHTML = "Trafikverket";
-            this._main_node.appendChild(clock);
             const table = document.createElement("table");
             table.id = "main_table";
             const row = document.createElement("tr");
@@ -54,6 +49,13 @@ Module.register("mmm-trafikverket-commute", {
             cell.innerHTML = this.config.station_from + " to " + this.config.station_to
             row.appendChild(cell);
             table.appendChild(row);
+            const clock_row = document.createElement("tr");
+            const clock_cell = document.createElement("td");
+            clock_cell.id = "clock";
+            clock_cell.className = "update_timer";
+            clock_cell.colSpan = "5";
+            clock_row.appendChild(clock_cell);
+            table.appendChild(clock_row);
             this._main_node.appendChild(table);
         }
         return this._main_node;
@@ -234,7 +236,7 @@ Module.register("mmm-trafikverket-commute", {
     
     update_clock: function () {
         if (this.last_update_time) {
-            document.getElementById("clock").innerHTML = `Trafikverket - time since update ${moment(moment().diff(this.last_update_time)).format("mm:ss")}`;
+            document.getElementById("clock").innerHTML = `Trafikverket - time since last update ${moment(moment().diff(this.last_update_time)).format("mm:ss")}`;
         }
     },
     
